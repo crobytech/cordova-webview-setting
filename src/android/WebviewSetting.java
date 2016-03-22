@@ -32,7 +32,6 @@ public class WebviewSetting extends CordovaPlugin {
                     webView.getSettings().setLoadWithOverviewMode(true);
                     webView.getSettings().setUseWideViewPort(true);
                     webView.getSettings().setMixedContentMode(webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
-
                     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             	        webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
 
