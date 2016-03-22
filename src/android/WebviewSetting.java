@@ -10,6 +10,7 @@ import org.json.JSONException;
 import android.os.Build;
 
 import android.util.Log;
+import android.webkit;
 
 
 
@@ -20,8 +21,8 @@ public class WebviewSetting extends CordovaPlugin {
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
         Log.d(LOG_TAG, "set viewport");
         this.webView = webView;
-        super.initialize(cordova, webView); 
-        
+        super.initialize(cordova, webView);
+
     }
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -30,13 +31,14 @@ public class WebviewSetting extends CordovaPlugin {
                 public void run() {
                     webView.getSettings().setLoadWithOverviewMode(true);
                     webView.getSettings().setUseWideViewPort(true);
-                    
+                    webView.getSettings().setMixedContentMode(webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+
                     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             	        webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
-            	
+
             	        Log.d(LOG_TAG, "setMediaPlaybackRequiresUserGesture: FALSE");
                     }
-                    
+
                     callbackContext.success();
                 }
             });
